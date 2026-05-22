@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sis</title>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 20px;
+
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        /* MAIN CARD */
+
+        .container {
+            width: 90%;
+            max-width: 350px;
+
+            margin: 30px auto;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            text-align: center;
+
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 25px;
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+
+            position: relative;
+            z-index: 2;
+        }
+
+        /* HEADING */
+
+        h1 {
+            color: #ff4081;
+            font-size: 2rem;
+        }
+
+        #message {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* BUTTON */
+
+        button {
+            width: 100%;
+            max-width: 250px;
+
+            padding: 14px;
+
+            border: none;
+            border-radius: 25px;
+
+            background: #ff4081;
+            color: white;
+
+            font-size: 1rem;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        /* BALLOONS */
+
+        .balloons {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+
+            top: 0;
+            left: 0;
+
+            overflow: hidden;
+
+            pointer-events: none;
+
+            z-index: 1;
+        }
+
+        .balloon {
+            width: 50px;
+            height: 65px;
+
+            border-radius: 50%;
+
+            position: absolute;
+
+            bottom: -100px;
+
+            opacity: 0.8;
+
+            animation: float linear infinite;
+        }
+
+        .balloon:nth-child(1) {
+            left: 10%;
+            background: #ff4d6d;
+            animation-duration: 8s;
+        }
+
+        .balloon:nth-child(2) {
+            left: 25%;
+            background: #ffd166;
+            animation-duration: 10s;
+        }
+
+        .balloon:nth-child(3) {
+            left: 40%;
+            background: #06d6a0;
+            animation-duration: 7s;
+        }
+
+        .balloon:nth-child(4) {
+            left: 55%;
+            background: #4cc9f0;
+            animation-duration: 9s;
+        }
+
+        .balloon:nth-child(5) {
+            left: 70%;
+            background: #c77dff;
+            animation-duration: 11s;
+        }
+
+        .balloon:nth-child(6) {
+            left: 80%;
+            background: paleturquoise;
+            animation-duration: 9s;
+        }
+
+        .balloon:nth-child(7) {
+            left: 90%;
+            background: blue;
+            animation-duration: 8s;
+        }
+
+        @keyframes float {
+
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-120vh);
+            }
+
+        }
+
+        /* CONFETTI */
+
+        #confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            overflow: hidden;
+
+            pointer-events: none;
+
+            z-index: 999;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+            }
+
+        }
+
+        /* PHOTO GALLERY */
+
+        .gallery {
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 120px;
+
+            object-fit: cover;
+
+            border-radius: 15px;
+
+            transition: 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* PHONE RESPONSIVE */
+
+        @media(max-width:600px) {
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery img {
+                height: 150px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="balloons">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
+
+    <div class="container">
+        <h1>🎂 Happy Birthday Sister 🎂</h1>
+
+        <p id="message"></p>
+
+        <button onclick="showWish(); createConfetti();">
+            Click for Surprise 🎁
+        </button>
+
+        <h2 id="wish"></h2>
+    </div>
+    <div id="confetti-container"></div>
+    <h2>📸 Memories</h2>
+
+    <div class="gallery">
+
+        <img src="photo1.jpg" alt="Memory 1">
+
+        <img src="photo2.jpg" alt="Memory 2">
+
+        <img src="photo3.jpg" alt="Memory 3">
+
+    </div>
+
+    <!-- <script src="index.js"></script> -->
+    <script>
+        let text = "You are the best sister in the world ❤️";
+        let i = 0;
+
+        function typeWriter() {
+
+            if (i < text.length) {
+                document.getElementById("message").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+
+        }
+
+        typeWriter();
+
+        function showWish() {
+
+            document.getElementById("wish").innerHTML =
+                "✨ Wishing you happiness, love and lots of cake 🎂";
+
+        }
+        function createConfetti() {
+
+            let colors = [
+                "#ff4d6d",
+                "#ffd166",
+                "#06d6a0",
+                "#4cc9f0",
+                "#c77dff",
+                "#ff9f1c"
+            ];
+
+            let container =
+                document.getElementById("confetti-container");
+
+            for (let i = 0; i < 100; i++) {
+
+                let confetti =
+                    document.createElement("div");
+
+                confetti.className = "confetti";
+
+                confetti.style.left =
+                    Math.random() * 100 + "vw";
+
+                confetti.style.backgroundColor =
+                    colors[Math.floor(Math.random() * colors.length)];
+
+                confetti.style.width =
+                    (Math.random() * 8 + 5) + "px";
+
+                confetti.style.height =
+                    (Math.random() * 8 + 5) + "px";
+
+                confetti.style.animationDuration =
+                    (Math.random() * 2 + 2) + "s";
+
+                container.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 4000);
+
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
